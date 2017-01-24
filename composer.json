@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AddressFactory\\GooglePlaces": "src"
+            "AddressFactory\\GooglePlaces\\": "src"
         }
     }
 }
