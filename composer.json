@@ -1,0 +1,14 @@
+{
+    "name": "addressfactory/googleplaces",
+    "description": "Transform per country definitions of google geocoding results",
+    "type": "library",
+    "license": "Morsum LLC",
+    "authors": [
+        {
+            "name": "adanjz",
+            "email": "adan-zweig@morsum.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
