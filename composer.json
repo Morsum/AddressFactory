@@ -15,5 +15,10 @@
         "branch-alias": {
             "dev-develop": "1.0-dev"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "AddressFactory\\GooglePlaces": "src"
+        }
     }
 }
