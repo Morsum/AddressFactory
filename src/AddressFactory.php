@@ -24,7 +24,7 @@ Class AddressFactory{
 		$classname = self::get($geocode);
         // return new $classname($geocode,$formattedAddress);
         // return new USAddressFactory($geocode);
-        $classname = 'AddressFactory\\GooglePlaces\\Factories\\'.$classname;
+        $classname = 'AddressFactory\\GooglePlaces\\factories\\'.$classname;
 		
         return new $classname($geocode);
 	}
