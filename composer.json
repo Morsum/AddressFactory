@@ -9,11 +9,11 @@
             "email": "adan-zweig@morsum.co"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "master",
     "require": {},
     "extra": {
         "branch-alias": {
-            "dev-develop": "1.0-dev"
+            "dev-develop": "1.0"
         }
     },
     "autoload": {
