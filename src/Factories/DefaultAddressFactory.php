@@ -60,7 +60,7 @@ Class DefaultAddressFactory extends AddressFactory{
 
         $key = array_search(["country","political"], array_column($geocode['result']['address_components'], 'types'));
         if(!empty($geocode['result']['address_components'][$key]['short_name'])){
-            $this->setCountryCode($geocode['result']['address_components'][$key]['short_name']);
+            $this->setCountryCode(substr($geocode['result']['address_components'][$key]['short_name'],0,2));
         }else{
             $this->setCountryCode("");
         }
@@ -74,7 +74,7 @@ Class DefaultAddressFactory extends AddressFactory{
 
         $key = array_search(["administrative_area_level_1","political"], array_column($geocode['result']['address_components'], 'types'));
         if(!empty($geocode['result']['address_components'][$key]['short_name'])){
-            $this->setStateCode($geocode['result']['address_components'][$key]['short_name']);
+            $this->setStateCode(substr($geocode['result']['address_components'][$key]['short_name'],0,10));
         }
 
         if(!empty($geocode['result']['address_components'][$key]['long_name'])) {
