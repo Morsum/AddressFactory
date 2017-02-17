@@ -2,7 +2,7 @@
 
 namespace AddressFactory\GooglePlaces\Factories;
 use AddressFactory\GooglePlaces\AddressFactory as AddressFactory;
-Class USAddressFactory extends AddressFactory{
+Class DefaultAddressFactory extends AddressFactory{
     function __construct($geocode=''){
         $this->geocodeResult = $geocode;
         $this->init();

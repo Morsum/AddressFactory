@@ -1,6 +1,7 @@
 <?php
 namespace AddressFactory\GooglePlaces;
 use AddressFactory\GooglePlaces\Factories\USAddressFactory;
+use AddressFactory\GooglePlaces\Factories\DefaultAddressFactory;
 Class AddressFactory{
 	protected $street_number,
 			$formattedAddress,
