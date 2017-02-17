@@ -38,7 +38,7 @@ Class AddressFactory{
             return self::getAddress($geocodingAddress['result']['formatted_address'],$flagCount++);
         }
         if(empty($response['results'][0]['formatted_address'])){
-            self::sendError('InavlidAddress');
+            throw new Exception('Invalid address sent');
         }
 
         $classname = 'AddressFactory\\GooglePlaces\\Factories\\'.self::get($geocodingAddress);
