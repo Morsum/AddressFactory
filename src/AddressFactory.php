@@ -2,6 +2,7 @@
 namespace AddressFactory\GooglePlaces;
 use AddressFactory\GooglePlaces\Factories\USAddressFactory;
 use AddressFactory\GooglePlaces\Factories\DefaultAddressFactory;
+use GooglePlaces;
 Class AddressFactory{
 	protected $street_number,
 			$formattedAddress,
