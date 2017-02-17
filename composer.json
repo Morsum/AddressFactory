@@ -10,7 +10,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "skagarwal/google-places-api": "^1.0"
+    },
     "extra": {
         "branch-alias": {
             "dev-develop": "1.0-dev"

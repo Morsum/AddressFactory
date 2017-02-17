@@ -21,12 +21,29 @@ Class AddressFactory{
 	function __construct($geocode=''){
         $this->geocodeResult = $geocode;
     }
+    public static function getAddress($string,$flagCount =0){
+        if(empty($string) || $flagCount == 10){
+            self::sendError('InavlidAddress');
+        }
+        $response = GooglePlaces::textSearch($string);
 
-	public static function getAddress($geocode){
-		$classname = 'AddressFactory\\GooglePlaces\\Factories\\'.self::get($geocode);
-		return new $classname($geocode);
-	}
+        $geocodingAddress = GooglePlaces::placeDetails($response['results'][0]['place_id']);
 
+        $tmpKey =array_search(["street_number"], array_column($geocodingAddress['result']['address_components'], 'types'));
+        $streetNumber =$geocodingAddress['result']['address_components'][$tmpKey]['short_name'];
+        $tmpKey = array_search(["route"], array_column($geocodingAddress['result']['address_components'], 'types'));
+        $streetName = $geocodingAddress['result']['address_components'][$tmpKey]['short_name'];
+        if(empty($streetNumber) || empty($streetName)){
+            return self::getAddress($geocodingAddress['result']['formatted_address'],$flagCount++);
+        }
+        if(empty($response['results'][0]['formatted_address'])){
+            self::sendError('InavlidAddress');
+        }
+
+        $classname = 'AddressFactory\\GooglePlaces\\Factories\\'.self::get($geocodingAddress);
+        return new $classname($geocodingAddress);
+
+    }
 	public static function get($geocode){
 		$countryCode = self::getGoogleApiCountry($geocode);
 		if(class_exists($countryCode .'AddressFactory')){
