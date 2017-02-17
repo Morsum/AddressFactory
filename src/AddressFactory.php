@@ -22,7 +22,7 @@ Class AddressFactory{
     }
 
 	public static function getAddress($geocode){
-		$classname = 'AddressFactory\\GooglePlaces\\factories\\'.self::get($geocode);
+		$classname = 'AddressFactory\\GooglePlaces\\Factories\\'.self::get($geocode);
 		return new $classname($geocode);
 	}
 
