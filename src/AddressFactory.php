@@ -26,9 +26,10 @@ Class AddressFactory{
         if(empty($string) || $flagCount == 10){
             self::sendError('InavlidAddress');
         }
-        $response = GooglePlaces::textSearch($string);
+        $googlePlaces = new GooglePlaces();
+        $response = $googlePlaces->textSearch($string);
 
-        $geocodingAddress = GooglePlaces::placeDetails($response['results'][0]['place_id']);
+        $geocodingAddress = $googlePlaces->placeDetails($response['results'][0]['place_id']);
 
         $tmpKey =array_search(["street_number"], array_column($geocodingAddress['result']['address_components'], 'types'));
         $streetNumber =$geocodingAddress['result']['address_components'][$tmpKey]['short_name'];
