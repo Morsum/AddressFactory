@@ -26,7 +26,7 @@ Class AddressFactory{
         if(empty($string) || $flagCount == 10){
             self::sendError('InavlidAddress');
         }
-        $googlePlaces = new GooglePlaces();
+        $googlePlaces = Facade::getFacadeAccessor();
         $response = $googlePlaces->textSearch($string);
 
         $geocodingAddress = $googlePlaces->placeDetails($response['results'][0]['place_id']);
