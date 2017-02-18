@@ -2,7 +2,7 @@
 namespace AddressFactory\GooglePlaces;
 use AddressFactory\GooglePlaces\Factories\USAddressFactory;
 use AddressFactory\GooglePlaces\Factories\DefaultAddressFactory;
-use GooglePlaces;
+use AddressFactory\GooglePlaces\PlacesApi as GooglePlaces;
 Class AddressFactory{
 	protected $street_number,
 			$formattedAddress,
@@ -39,6 +39,7 @@ Class AddressFactory{
         }
         if(empty($response['results'][0]['formatted_address'])){
             throw new Exception('Invalid address sent');
+
         }
 
         $classname = 'AddressFactory\\GooglePlaces\\Factories\\'.self::get($geocodingAddress);
