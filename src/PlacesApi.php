@@ -1,6 +1,7 @@
 <?php
 namespace  AddressFactory\GooglePlaces;
 
+use AddressFactory\GooglePlaces\Factories\DefaultAddressFactory;
 use GuzzleHttp\Client;
 use AddressFactory\GooglePlaces\Exceptions\GooglePlacesApiException;
 
@@ -190,8 +191,7 @@ class PlacesApi
         $this->setStatus($response['status']);
 
         if ($response['status'] !== 'OK') {
-            throw new GooglePlacesApiException("Response returned with status: "
-                . $response['status']);
+            return new DefaultAddressFactory();
         }
 
         return $response;
