@@ -9,7 +9,9 @@ Class DefaultAddressFactory extends AddressFactory{
     }
     function init(){
         $geocode = $this->geocodeResult;
-        $this->setFormattedAddress($geocode['result']['formatted_address']);
+        if(!empty($geocode['result']['formatted_address'])){
+            $this->setFormattedAddress($geocode['result']['formatted_address']);
+        }
 
         $tmpKey = array_search(["street_number"], array_column($geocode['result']['address_components'], 'types'));
         if(!empty($geocode['result']['address_components'][$tmpKey]['short_name'] && is_numeric($geocode['result']['address_components'][$tmpKey]['short_name']))){

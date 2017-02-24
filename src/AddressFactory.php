@@ -24,7 +24,7 @@ Class AddressFactory{
     }
     public static function getAddress($string,$flagCount =0){
         if(empty($string) || $flagCount == 10){
-            self::sendError('InavlidAddress');
+            return new DefaultAddressFactory();
         }
         $googlePlaces = new GooglePlaces(env('GOOGLE_MAPS_API_KEY'));
         $response = $googlePlaces->textSearch($string);
