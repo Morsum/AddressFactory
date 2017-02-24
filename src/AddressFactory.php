@@ -33,6 +33,8 @@ Class AddressFactory{
             $geocodingAddress = $googlePlaces->placeDetails($response['results'][0]['place_id']);
         }catch (GooglePlacesApiException $e){
             return new DefaultAddressFactory();
+        }catch (Exception $e){
+            return new DefaultAddressFactory();
         }
 
 
