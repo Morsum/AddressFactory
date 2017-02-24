@@ -1,5 +1,6 @@
 <?php
 namespace AddressFactory\GooglePlaces;
+use AddressFactory\GooglePlaces\Exceptions\GooglePlacesApiException;
 use AddressFactory\GooglePlaces\Factories\USAddressFactory;
 use AddressFactory\GooglePlaces\Factories\DefaultAddressFactory;
 use AddressFactory\GooglePlaces\PlacesApi as GooglePlaces;
@@ -27,9 +28,15 @@ Class AddressFactory{
             return new DefaultAddressFactory();
         }
         $googlePlaces = new GooglePlaces(env('GOOGLE_MAPS_API_KEY'));
-        $response = $googlePlaces->textSearch($string);
+        try{
+            $response = $googlePlaces->textSearch($string);
+            $geocodingAddress = $googlePlaces->placeDetails($response['results'][0]['place_id']);
+        }catch (GooglePlacesApiException $e){
+            return new DefaultAddressFactory();
+        }
 
-        $geocodingAddress = $googlePlaces->placeDetails($response['results'][0]['place_id']);
+
+
 
         $tmpKey =array_search(["street_number"], array_column($geocodingAddress['result']['address_components'], 'types'));
         $streetNumber =$geocodingAddress['result']['address_components'][$tmpKey]['short_name'];
