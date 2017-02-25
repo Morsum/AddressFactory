@@ -27,7 +27,8 @@ Class AddressFactory{
         if(empty($string) || $flagCount == 10){
             return new DefaultAddressFactory();
         }
-        $googlePlaces = new GooglePlaces(env('GOOGLE_MAPS_API_KEY'));
+//        $googlePlaces = new GooglePlaces(env('GOOGLE_MAPS_API_KEY'));
+        $googlePlaces = new GooglePlaces('AIzaSyDZ-9Dz5vWYXqoogGVV7-Pa73jJh-4IvCc');
         try{
             $response = $googlePlaces->textSearch($string);
             $geocodingAddress = $googlePlaces->placeDetails($response['results'][0]['place_id']);

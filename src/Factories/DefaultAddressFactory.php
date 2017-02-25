@@ -52,7 +52,7 @@ Class DefaultAddressFactory extends AddressFactory{
             }
 
             $tmpKey = array_search(["postal_code"], array_column($geocode['result']['address_components'], 'types'));
-            if (empty($geocode['result']['address_components'][$tmpKey]['long_name'])) {
+            if (!empty($geocode['result']['address_components'][$tmpKey]['long_name'])) {
                 $this->setPostalCode($geocode['result']['address_components'][$tmpKey]['long_name']);
             } else {
                 $this->setPostalCode("");
