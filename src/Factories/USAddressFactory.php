@@ -34,7 +34,7 @@ Class USAddressFactory extends AddressFactory{
 		}
 
 		$tmpKey = array_search(["postal_code"], array_column($geocode['result']['address_components'], 'types'));
-		$this->setPostalCode($geocode['result']['address_components'][$tmpKey]['long_name']);
+		$this->setPostalCode(substr($geocode['result']['address_components'][$tmpKey]['long_name'],0,11));
 
 		$key = array_search(["country","political"], array_column($geocode['result']['address_components'], 'types'));
 		$this->setCountryCode($geocode['result']['address_components'][$key]['short_name']);
