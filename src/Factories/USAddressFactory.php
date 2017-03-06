@@ -49,6 +49,10 @@ Class USAddressFactory extends AddressFactory{
 		$this->setLat($geocode['result']['geometry']['location']['lat']);
 		$this->setLng($geocode['result']['geometry']['location']['lng']);
 		$this->setApartment(" ");
+
+		if(($this->getStreet() == $this->getCity()) && ($this->getCity() == $this->getState())){
+		    $this->setFormattedAddress('');
+        }
 	}
 
 }

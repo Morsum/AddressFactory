@@ -89,6 +89,10 @@ Class DefaultAddressFactory extends AddressFactory{
             if (!empty($geocode['result']['geometry']['location']['lat'])) {
                 $this->setLng($geocode['result']['geometry']['location']['lng']);
             }
+
+            if(($this->getStreet() == $this->getCity()) && ($this->getCity() == $this->getState())){
+                $this->setFormattedAddress('');
+            }
         }
 
     }
