@@ -1,10 +1,14 @@
 <?php
 namespace AddressFactory\GooglePlaces;
+
 use AddressFactory\GooglePlaces\Exceptions\GooglePlacesApiException;
 use AddressFactory\GooglePlaces\Factories\USAddressFactory;
 use AddressFactory\GooglePlaces\Factories\DefaultAddressFactory;
 use AddressFactory\GooglePlaces\PlacesApi as GooglePlaces;
-Class AddressFactory{
+
+Class AddressFactory
+{
+	
 	protected $street_number,
 			$formattedAddress,
 			$street,
@@ -19,7 +23,9 @@ Class AddressFactory{
 			$lng,
 			$countryCode,
 			$country;
+			
 	protected $geocodeResult;
+	
 	function __construct($geocode=''){
         $this->geocodeResult = $geocode;
     }
@@ -27,8 +33,8 @@ Class AddressFactory{
         if(empty($string) || $flagCount == 10){
             return new DefaultAddressFactory();
         }
-//        $googlePlaces = new GooglePlaces(env('GOOGLE_MAPS_API_KEY'));
-        $googlePlaces = new GooglePlaces('AIzaSyDZ-9Dz5vWYXqoogGVV7-Pa73jJh-4IvCc');
+       $googlePlaces = new GooglePlaces(env('GOOGLE_MAPS_API_KEY'));
+
         try{
             $response = $googlePlaces->textSearch($string);
             $geocodingAddress = $googlePlaces->placeDetails($response['results'][0]['place_id']);
@@ -40,13 +46,11 @@ Class AddressFactory{
             die();
         }
 
-
-
-
         $tmpKey =array_search(["street_number"], array_column($geocodingAddress['result']['address_components'], 'types'));
         $streetNumber =$geocodingAddress['result']['address_components'][$tmpKey]['short_name'];
         $tmpKey = array_search(["route"], array_column($geocodingAddress['result']['address_components'], 'types'));
         $streetName = $geocodingAddress['result']['address_components'][$tmpKey]['short_name'];
+		
         if(empty($streetNumber) || empty($streetName)){
             return self::getAddress($geocodingAddress['result']['formatted_address'],$flagCount++);
         }
