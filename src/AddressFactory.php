@@ -85,7 +85,7 @@ Class AddressFactory{
 	}
 
 	function setFormattedAddress($var){
-		$this->formattedAddress = $var;
+		$this->formattedAddress = trim($var);
 	}
 
 	function getStreet(){
