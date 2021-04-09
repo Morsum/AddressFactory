@@ -6,14 +6,14 @@
     "authors": [
         {
             "name": "Morsum Team",
-            "email": ""
+            "email": "devs@morsum.co"
         }
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/support": "~5.0",
-        "illuminate/container": "~5.0",
+        "php": "^7.2",
+        "illuminate/support": "^6.0",
+        "illuminate/container": "^6.0",
         "guzzlehttp/guzzle": "^6.1"
     },
     "extra": {
